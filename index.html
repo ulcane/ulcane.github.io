@@ -247,14 +247,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>利用程序猿在写程序时对文件上传路径过滤不严格，产生0X00截断上传漏洞</p>
-<h4 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h4><p>首先假设文件上传路径是<a href="http://xx.xx.xx.xx/xxx/vv.php.jpg,然后通过抓包截断将php.jpg后的.换成0x00，当文件读到这里，会认为文件已经结束，将vv.php.jpg的内容写入php.jpg里" target="_blank" rel="noopener">http://xx.xx.xx.xx/xxx/vv.php.jpg,然后通过抓包截断将php.jpg后的.换成0x00，当文件读到这里，会认为文件已经结束，将vv.php.jpg的内容写入php.jpg里</a></p>
-<h4 id="在这之前"><a href="#在这之前" class="headerlink" title="在这之前"></a>在这之前</h4><p>先要完成一些配置</p>
-<h5 id="火狐浏览器"><a href="#火狐浏览器" class="headerlink" title="火狐浏览器"></a>火狐浏览器</h5><p>选项-&gt;常规-&gt;网络代理<br><img src="http://ww4.sinaimg.cn/large/0060lm7Tly1foofnypyg2j30ue0klq5b.jpg" alt=""></p>
-<h5 id="burpsite"><a href="#burpsite" class="headerlink" title="burpsite"></a>burpsite</h5><p><img src="http://ww1.sinaimg.cn/large/0060lm7Tly1fooft6j3onj30qq0ehmyk.jpg" alt=""></p>
-<p>####<br>修改之后对页面进行抓包，抓包后hex看十六进制，找到.所对应的再改成0x00</p>
-<h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p>打开菜刀，添加木马地址，完工</p>
-
+        <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>利用程序猿在写程序时对文件上传路径过滤不严格，产生0X00截断上传漏洞
+        
+          <a class="article-more-a" href="/2018/02/04/利用00截断/#more">more >></a>
+        
       
 
       
