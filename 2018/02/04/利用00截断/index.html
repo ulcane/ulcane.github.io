@@ -6,19 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://ulcane.com">
-  <title>python基础知识 | ulcane&#39;s blog</title>
+  <title>利用00截断 | ulcane&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="各种简单函数使用">
-<meta name="keywords" content="python">
+  <meta name="description" content="原理利用程序猿在写程序时对文件上传路径过滤不严格，产生0X00截断上传漏洞 举例首先假设文件上传路径是http://xx.xx.xx.xx/xxx/vv.php.jpg,然后通过抓包截断将php.jpg后的.换成0x00，当文件读到这里，会认为文件已经结束，将vv.php.jpg的内容写入php.jpg里 在这之前先要完成一些配置 火狐浏览器选项-&amp;gt;常规-&amp;gt;网络代理 burpsite">
+<meta name="keywords" content="其他">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python基础知识">
-<meta property="og:url" content="http://ulcane.com/2018/02/12/python语言基础/index.html">
+<meta property="og:title" content="利用00截断">
+<meta property="og:url" content="http://ulcane.com/2018/02/04/利用00截断/index.html">
 <meta property="og:site_name" content="ulcane&#39;s blog">
-<meta property="og:description" content="各种简单函数使用">
-<meta property="og:updated_time" content="2018-02-12T09:17:41.814Z">
+<meta property="og:description" content="原理利用程序猿在写程序时对文件上传路径过滤不严格，产生0X00截断上传漏洞 举例首先假设文件上传路径是http://xx.xx.xx.xx/xxx/vv.php.jpg,然后通过抓包截断将php.jpg后的.换成0x00，当文件读到这里，会认为文件已经结束，将vv.php.jpg的内容写入php.jpg里 在这之前先要完成一些配置 火狐浏览器选项-&amp;gt;常规-&amp;gt;网络代理 burpsite">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/0060lm7Tly1foofnypyg2j30ue0klq5b.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/0060lm7Tly1fooft6j3onj30qq0ehmyk.jpg">
+<meta property="og:updated_time" content="2018-02-25T08:06:18.529Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python基础知识">
-<meta name="twitter:description" content="各种简单函数使用">
+<meta name="twitter:title" content="利用00截断">
+<meta name="twitter:description" content="原理利用程序猿在写程序时对文件上传路径过滤不严格，产生0X00截断上传漏洞 举例首先假设文件上传路径是http://xx.xx.xx.xx/xxx/vv.php.jpg,然后通过抓包截断将php.jpg后的.换成0x00，当文件读到这里，会认为文件已经结束，将vv.php.jpg的内容写入php.jpg里 在这之前先要完成一些配置 火狐浏览器选项-&amp;gt;常规-&amp;gt;网络代理 burpsite">
+<meta name="twitter:image" content="http://ww4.sinaimg.cn/large/0060lm7Tly1foofnypyg2j30ue0klq5b.jpg">
   
     <link rel="alternative" href="/atom.xml" title="ulcane&#39;s blog" type="application/atom+xml">
   
@@ -154,67 +157,33 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-python语言基础" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-利用00截断" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      python基础知识
+      利用00截断
     </h1>
   
 
         
-        <a href="/2018/02/12/python语言基础/" class="archive-article-date">
-  	<time datetime="2018-02-12T16:36:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-12</time>
+        <a href="/2018/02/04/利用00截断/" class="archive-article-date">
+  	<time datetime="2018-02-04T16:36:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="各种简单函数使用"><a href="#各种简单函数使用" class="headerlink" title="各种简单函数使用"></a>各种简单函数使用<a id="more"></a></h2><ul>
-<li>int(x,[,base])<br>将字符串转化为整数，参数base为可选参数，指定转换后整数的进制，默认为十进制</li>
-<li>long(x,[,base])<br>将字符串转换为长整数</li>
-<li>float()<br>将字符串或数字转换为浮点数</li>
-<li>eval() 计算字符串的有效python表达式，并返回结果</li>
-<li>str() 将数值转换为字符串</li>
-<li>repr() 将对象转换为可打印的字符串</li>
-<li>chr() 将一个整数转换为可对应ASCII的字符</li>
-<li>ord() 将一个字符转换为对应的ASCII</li>
-<li>hex() 将一个整数转换成一个十六进制字符串</li>
-<li>oct() 将一个整数转换成一个八进制字符串-</li>
-<li>注意*十六进制字符串一0x开头，八进制字符串以0o开头<h2 id="简单的运算符和表达式"><a href="#简单的运算符和表达式" class="headerlink" title="简单的运算符和表达式"></a>简单的运算符和表达式</h2><h3 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h3></li>
-<li>+-*/ </li>
-<li>%(求模)</li>
-<li>** 幂运算</li>
-<li>//整除</li>
-<li>&amp;与 </li>
-<li>|或 </li>
-<li>^异或(不一样取1)</li>
-<li>~ 非</li>
-<li>&lt;&lt;(左移运算符)</li>
-<li>(右移运算符)&gt;&gt;<h3 id="字符串的运算"><a href="#字符串的运算" class="headerlink" title="字符串的运算"></a>字符串的运算</h3></li>
-<li>+字符串的连接</li>
-<li><em>字符串的重复 </em>x就是字符串重复x次</li>
-<li>[]索引，[0]就是字符串的第一位</li>
-<li>[a:b],截取从第a-1位到第b-1位的字符串，最末尾的一位是-1</li>
-<li>in</li>
-<li>not in</li>
-<li>r或R 在字符串第一个引号前加上则字符串就是原始字符串，就算有\n也直接打印<br>###</li>
-<li>try-except异常处理语句<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><h4 id="获取列表长度"><a href="#获取列表长度" class="headerlink" title="获取列表长度"></a>获取列表长度</h4>len(列表名)<h4 id="访问列表元素"><a href="#访问列表元素" class="headerlink" title="访问列表元素"></a>访问列表元素</h4>列表名[index],第一个是0<h4 id="添加列表元素"><a href="#添加列表元素" class="headerlink" title="添加列表元素"></a>添加列表元素</h4>列表.append(新值) 在列表尾部添加元素<h4 id="一个列表的每个元素添加到另一个"><a href="#一个列表的每个元素添加到另一个" class="headerlink" title="一个列表的每个元素添加到另一个"></a>一个列表的每个元素添加到另一个</h4>列表1.extend(列表2)<h4 id="合并两个列表"><a href="#合并两个列表" class="headerlink" title="合并两个列表"></a>合并两个列表</h4>列表3=列表1+列表2<h4 id="删除列表元素"><a href="#删除列表元素" class="headerlink" title="删除列表元素"></a>删除列表元素</h4>del 列表名[索引]<h4 id="定位列表元素"><a href="#定位列表元素" class="headerlink" title="定位列表元素"></a>定位列表元素</h4>列表.index(元素值)<h4 id="升序排序"><a href="#升序排序" class="headerlink" title="升序排序"></a>升序排序</h4>列表.sort()<h4 id="反序排序"><a href="#反序排序" class="headerlink" title="反序排序"></a>反序排序</h4>list. reverse()<h4 id="列表-与元组-的转换"><a href="#列表-与元组-的转换" class="headerlink" title="列表[]与元组()的转换"></a>列表[]与元组()的转换</h4></li>
-</ul>
-<ul>
-<li>列表对象=list(元组对象)</li>
-<li>元租对象=tuple(列表对象)</li>
-<li>因为元组内容不能改变，所以没有sort函数，所以要把他转换为列表再进行排序<h3 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h3><h4 id="定义字典"><a href="#定义字典" class="headerlink" title="定义字典"></a>定义字典</h4>字典名={‘键’：’值’,’键’：’值’}<h4 id="获取字典长度"><a href="#获取字典长度" class="headerlink" title="获取字典长度"></a>获取字典长度</h4>len(字典名)<h4 id="访问字典元素"><a href="#访问字典元素" class="headerlink" title="访问字典元素"></a>访问字典元素</h4>字典名[键]<h4 id="添加字典元素"><a href="#添加字典元素" class="headerlink" title="添加字典元素"></a>添加字典元素</h4>字典[键]=值<h4 id="合并两个字典"><a href="#合并两个字典" class="headerlink" title="合并两个字典"></a>合并两个字典</h4>字典1.update(字典2)<h4 id="删除字典元素"><a href="#删除字典元素" class="headerlink" title="删除字典元素"></a>删除字典元素</h4>字典名.pop(键)<h4 id="判断字典是否存在元素"><a href="#判断字典是否存在元素" class="headerlink" title="判断字典是否存在元素"></a>判断字典是否存在元素</h4>键 in 字典<h4 id="清空字典的方法"><a href="#清空字典的方法" class="headerlink" title="清空字典的方法"></a>清空字典的方法</h4>字典名.clear()<h4 id="字典的嵌套"><a href="#字典的嵌套" class="headerlink" title="字典的嵌套"></a>字典的嵌套</h4>字典[键][键]<h3 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h3><h4 id="长度"><a href="#长度" class="headerlink" title="长度"></a>长度</h4>len(集合名)<h4 id="添加集合元素"><a href="#添加集合元素" class="headerlink" title="添加集合元素"></a>添加集合元素</h4>集合.add(值)<h4 id="将另一个指定的元素添加到集合"><a href="#将另一个指定的元素添加到集合" class="headerlink" title="将另一个指定的元素添加到集合"></a>将另一个指定的元素添加到集合</h4>集合.update(值)<h4 id="删除集合元素"><a href="#删除集合元素" class="headerlink" title="删除集合元素"></a>删除集合元素</h4>集合名.remove(值)<h4 id="清空指定集合的所有元素"><a href="#清空指定集合的所有元素" class="headerlink" title="清空指定集合的所有元素"></a>清空指定集合的所有元素</h4>集合名.clear()<h4 id="判断集合是否存在元素"><a href="#判断集合是否存在元素" class="headerlink" title="判断集合是否存在元素"></a>判断集合是否存在元素</h4>值 in 集合<h4 id="并集"><a href="#并集" class="headerlink" title="并集"></a>并集</h4></li>
-</ul>
-<ul>
-<li>s1|s2</li>
-<li>s=s1.union<h4 id="交集和差集"><a href="#交集和差集" class="headerlink" title="交集和差集"></a>交集和差集</h4></li>
-<li>&amp;-</li>
-</ul>
+        <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>利用程序猿在写程序时对文件上传路径过滤不严格，产生0X00截断上传漏洞</p>
+<h4 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h4><p>首先假设文件上传路径是<a href="http://xx.xx.xx.xx/xxx/vv.php.jpg,然后通过抓包截断将php.jpg后的.换成0x00，当文件读到这里，会认为文件已经结束，将vv.php.jpg的内容写入php.jpg里" target="_blank" rel="noopener">http://xx.xx.xx.xx/xxx/vv.php.jpg,然后通过抓包截断将php.jpg后的.换成0x00，当文件读到这里，会认为文件已经结束，将vv.php.jpg的内容写入php.jpg里</a></p>
+<h4 id="在这之前"><a href="#在这之前" class="headerlink" title="在这之前"></a>在这之前</h4><p>先要完成一些配置</p>
+<h5 id="火狐浏览器"><a href="#火狐浏览器" class="headerlink" title="火狐浏览器"></a>火狐浏览器</h5><p>选项-&gt;常规-&gt;网络代理<br><img src="http://ww4.sinaimg.cn/large/0060lm7Tly1foofnypyg2j30ue0klq5b.jpg" alt=""></p>
+<h5 id="burpsite"><a href="#burpsite" class="headerlink" title="burpsite"></a>burpsite</h5><p><img src="http://ww1.sinaimg.cn/large/0060lm7Tly1fooft6j3onj30qq0ehmyk.jpg" alt=""></p>
+<p>####<br>修改之后对页面进行抓包，抓包后hex看十六进制，找到.所对应的再改成0x00</p>
+<h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p>打开菜刀，添加木马地址，完工</p>
 
       
 
@@ -249,7 +218,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">其他</a>
         		</li>
       		
 		</ul>
@@ -305,7 +274,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://ulcane.com/2018/02/12/python语言基础/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://ulcane.com/2018/02/04/利用00截断/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -319,9 +288,18 @@
   
 <nav id="article-nav">
   
+    <a href="/2018/02/12/python语言基础/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          python基础知识
+        
+      </div>
+    </a>
   
-    <a href="/2018/02/04/利用00截断/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">利用00截断</div>
+  
+    <a href="/2018/02/02/基础知识/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">基础知识</div>
       <i class="icon-circle-right"></i>
     </a>
   
